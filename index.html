@@ -64,7 +64,14 @@ var FORM_A = "https://tally.so/r/Pd0o9x";
 var FORM_B = "https://tally.so/r/xXZGpv";
 // =====================================================
 
-var chosen = Math.random() < 0.5 ? FORM_A : FORM_B;
+var chosen = localStorage.getItem("surveyVersion");
+
+if (!chosen) {
+  chosen = Math.random() < 0.5 ? "A" : "B";
+  localStorage.setItem("surveyVersion", chosen);
+}
+
+chosen = chosen === "A" ? FORM_A : FORM_B;
 
 // Redireciona imediatamente
 window.location.href = chosen;
